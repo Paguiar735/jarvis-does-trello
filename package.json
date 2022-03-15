@@ -1,0 +1,36 @@
+{
+  "name": "jarvis-does-trello",
+  "version": "0.1.15",
+  "description": "",
+  "main": "./dist/jarvis-does-trello/index.js",
+  "scripts": {
+    "build": "rm -rf ./dist && npx tsc --build tsconfig.client.json && cp src/jarvis-does-trello/package.json dist/jarvis-does-trello/package.json",
+    "builds": "rm -rf ./dist && npx tsc --build tsconfig.json",
+    "dev": "npm run builds && clear && node ./dist/jarvis-does-trello/Tests/minimalWorkingExample.js",
+    "jest": "clear && npx jest --verbose --collectCoverageFrom=./src/Trello/Tests/ --testPathIgnorePatterns=/Working/",
+    "test": "clear && npx jest --collectCoverageFrom=./src/Trello/Tests/Working",
+    "start": "clear && node ./dist/Trello/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paguiar735/jarvis-does-trello.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Paguiar735/jarvis-does-trello/issues"
+  },
+  "homepage": "https://github.com/Paguiar735/jarvis-does-trello#readme",
+  "dependencies": {
+    "axios": "^0.26.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/papaparse": "^5.3.2",
+    "papaparse": "^5.3.1",
+    "typescript": "^4.5.5",
+    "dotenv": "^16.0.0",
+    "jest": "^27.5.1"
+  }
+}

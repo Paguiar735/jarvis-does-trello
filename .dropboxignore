@@ -1,6 +1,6 @@
-# Output folder
-dist/*
-
+# ----
+# Automatically Generated .dropboxignore file at Sat Feb 19 15:06:32 -04 2022
+# ----
 # Logs
 logs
 *.log
@@ -73,8 +73,7 @@ typings/
 
 # dotenv environment variables file
 .env
-.test.env
-.dropboxignore
+.env.test
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -106,3 +105,4 @@ dist
 
 # TernJS port file
 .tern-port
+# ----
