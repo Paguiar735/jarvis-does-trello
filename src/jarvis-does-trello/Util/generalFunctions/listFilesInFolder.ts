@@ -5,11 +5,11 @@ export function listFilesInFolder (args: {pathToFolder: string, enconding: any})
     if (encoding)
         encoding = "UTF-8"
     return new Promise(function(resolve, reject) {
-        fs.readdir(args["pathToFolder"],encoding, function(err, filenames){
-            if (err) 
-                reject(err)
-            else 
-                resolve(filenames)
-        });
+        fs.readdir(args["pathToFolder"], encoding, (err, filenames) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(filenames);
+            });
     });
 };

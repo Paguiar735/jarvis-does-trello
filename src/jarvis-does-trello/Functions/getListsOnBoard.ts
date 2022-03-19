@@ -1,22 +1,17 @@
-import { AxiosResponse, axiosTrello } from "../Util/axiosTrelloInstance"
+// The papaparse is meant to return the lists as well as their respective ids in the CSV format. It's currently incomplete
 // import papa from "papaparse"
+import * as jarvis from "../index"
+import { AxiosResponse, axiosTrello } from "../Util/axiosTrelloInstance"
 
 export async function getListsOnBoard(args: {
     auth?: { "key": string | undefined, "token": string | undefined } | undefined,
     idBoard: string | object[],
 }): Promise<object> {
 
-    let trelloApiResponse: AxiosResponse
-    let authParams: { "key": string | undefined, "token": string | undefined } | undefined;
-
-    if (!args.auth || args.auth === { "key": undefined, "token": undefined }) {
-        authParams = undefined
-    } else {
-        authParams = { "key": args.auth.key, "token": args.auth.token }
-    }
+    let authParams: typeof args["auth"] = await jarvis.getAuthParams(args["auth"])
 
     try {
-        trelloApiResponse = await axiosTrello.get(`/boards/${args["idBoard"]}/lists`, { params: authParams })
+        let trelloApiResponse: AxiosResponse = await axiosTrello.get(`/boards/${args["idBoard"]}/lists`, { params: authParams })
         let relevantData = []
         for (let listInfo of trelloApiResponse["data"]) {
             const { id, name } = listInfo
