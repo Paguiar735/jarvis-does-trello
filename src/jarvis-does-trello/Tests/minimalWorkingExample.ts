@@ -8,31 +8,55 @@ dotenv.config({path: ".env"})
 async function main() {
 
 const auth = {
-    key: process.env.TRELLO_API_BOT_7_KEY1,
-    token: process.env.TRELLO_API_BOT_7_TOKEN1
+    key: process.env.TRELLO_API_BOT_3_KEY1,
+    token: process.env.TRELLO_API_BOT_3_TOKEN1
 }
 
-// const data = await jarvis.getListsOnBoard({
-//     auth,
-//     idBoard: process.env.TRELLO_BOARD1
-// })
 
-const data = [
-{ id: '62363f79423d5818a6570a86', name: 'segunda-feira 19/03/22' }
-,
-{ id: '623645390387357f6d736226', name: 'quinta-feita 01/03/22' },
-{ id: '623645499f167d3ff7bf2313', name: 'terça-feira 05/03/22' }
-]
 
- 
-for (let list of data)
-    await jarvis.archiveList({
-        auth,
-        idList: list["id"],
-        unarchive: true
+const data: any = await jarvis.getListsOnBoard({
+    auth,
+    idBoard: "60eb368964361a84796684c0"
 })
 
+let dataCSV = []
+if (data.length) {
+for (let item of data)
+    dataCSV.push([item.name, item.id])
+}
+console.log(dataCSV)
+
+
+// // Se em algum momento a automação parou no quadro "Ouvidoria da CMM", executar os códigos abaixo
+
+// let listsOnBoardOuvidoriaDaCMM = [
+//     { idList: process.env.TRELLO_OUVIDORIADACMM_DEMANDASRECEBIDAS },
+//     { idList: process.env.TRELLO_OUVIDORIADACMM_EMANDAMENTO },
+//     { idList: process.env.TRELLO_OUVIDORIADACMM_ENCERRADAS, exceptionList: ["62426f71a5a79e7d25c7c411"] },
+//     { idList: process.env.TRELLO_OUVIDORIADACMM_EMANDAMENTORETORNARPARACENTRALDEDEMANDAS },
+//     { idList: process.env.TRELLO_OUVIDORIADACMM_CONCLUIDASRETORNARPARACENTRALDEDEMANDAS },
+//     { idList: process.env.TRELLO_OUVIDORIADACMM_TAXADEESGOTO }
+// ]
+// let list: any
+// for (list of listsOnBoardOuvidoriaDaCMM) {
+//     await jarvis.addChecklist({
+//         auth,
+//         idList: list.idList,
+//         idCardSource: process.env.TRELLO_CENTRALDEDEMANDAS_DEMANDASRECEBIDAS_CARDCOMCHECKLIST,
+//         exceptionList: list.exceptionList
+//     })
+// }
+
+
+// for (let list of data)
+//     await jarvis.archiveList({
+//         auth,
+//         idList: list["id"],
+//         unarchive: true
+// })
+
 // console.log(data)
+
 
 // jarvis.addDeadline({
 //     auth: {
